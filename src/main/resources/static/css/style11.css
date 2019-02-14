@@ -1,0 +1,250 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+.center-block, .carrousel, .carrousel .wrapper {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.gallery {
+  list-style: none;
+  width: 1220px;
+  margin-left: -15px;
+  margin-bottom: 20px;
+}
+
+.gallery li{
+ float: left;
+ margin-bottom: 10px;
+
+}
+.gallery li a {
+    display: block;
+    width: 287px;
+    height: 287px;
+    padding: 9px 8px;
+    border: 1px solid transparent;
+    position: relative;
+}
+a {
+    text-decoration: none!important;
+    /* color: #24d; */
+}
+
+.gallery img {
+    width: 285px;
+    height: 190px;
+    border: 1px solid #e9e9e9;
+   
+}
+.gallery li a.car-a .t {
+    font-size: 17px;
+    color: #495056;
+    font-weight: 400;
+    padding: 1px 0 6px 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 3px;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.gallery li a.car-a .t-i {
+    color: #a5abb2;
+    font-size: 15px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+}
+.gallery li a.car-a .t-i .icon-pad {
+    display: inline-block;
+    font-size: 16px;
+    width: 14px;
+    text-align: center;
+   /*  vertical-align: top; */
+    line-height: 20px;
+}
+.gallery li .t-price {
+    font-size: 20px;
+    color: #f95523;
+    padding-left: 4px;
+}
+.t-price {
+    height: 30px;
+    overflow: hidden;
+}
+.t-price p {
+    float: left;
+    line-height: 30px;
+}
+p {
+    display: block;
+    /* margin-block-start: 1em; */
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.t-price i.i-orange {
+    color: #ff9650;
+    background: #ffeeda;
+}
+.t-price i.i-red {
+    color: #f88368;
+    background: #ffeae5;
+}
+.t-price i.i-blue {
+    color: #d7a844;
+    background: #fcf2d5;
+}
+.t-price i.i-green {
+    color: #3fc56e;
+    background: #e8f6ed;
+}
+.t-price i {
+    float: right;
+    width: 46px;
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 0 0 5px;
+}
+.t-price em.line-through {
+    text-decoration: line-through;
+}
+.t-price em {
+    float: left;
+    margin-left: 10px;
+    margin-top: 11px;
+    color: #a5abb2;
+}
+.t-price em, .t-price span {
+    font-size: 14px;
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+} 
+
+.gallery li a:hover {
+  border:1px solid #e6e6e6;
+  color:#495056;
+  text-decoration:none;
+  box-shadow:0 0 5px 2px #e6e6e6;
+}
+.discount{
+	position: absolute;
+    width: 62px;
+    z-index: 1;
+    left: 20px;
+    top: 4px;
+}
+ .icon-sale {
+	width: 68px;
+	height: 58px;
+    background-image: url(../images/222.png);
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	position: relative;
+	top: 1px;
+}
+.icon-sale p.discount_title{
+	font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #8C5313;
+    letter-spacing: -.8px;
+    text-align: center;
+    line-height: 20px;
+    position: relative;
+    top: 3px;
+} 
+/* .icon-sale {
+    height: 40px;
+    line-height: 17px;
+    padding: 7px 0 10px;
+} */
+.icon-sale p.discount_price{
+	font-family: Helvetica-Bold;
+    font-size: 14px;
+    color: #8C5313;
+    text-align: center;
+    line-height: 12px;
+    font-weight: 400;
+    position: relative;
+    top: 5px;
+}
+
+.icon-sale p {
+    width: 60px;
+    text-align: center;
+    margin-bottom: 0px;
+    
+}
+.icon-sale p.discount_price .number {
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: -3px;
+}
+
+.icon-sale p span {
+    font-family: Helvetica-Bold;
+    font-size: 11px;
+    color: #8C5313;
+    text-align: center;
+    line-height: 12px;
+}
+.carrousel {
+  position: fixed;
+  background-color: rgba(10, 10, 10, 0.8);
+  display: none;
+}
+.carrousel .wrapper {
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+  /*.loading{
+    color: #FFF;
+    font-size: 24px;
+    margin: 40% 40%;
+    display: none;
+  }*/
+}
+.carrousel .wrapper > img {
+  width: 100%;
+} 
+
+.close {
+  cursor: pointer;
+  color: #FFF;
+  /* position: absolute; */
+  top: 4px;
+  right: 8px;
+  font-size: 18px;
+}
+.close:hover {
+ font-size: 20px;
+  color: #DDD;
+}
+.a-box{
+	 float: left;
+}

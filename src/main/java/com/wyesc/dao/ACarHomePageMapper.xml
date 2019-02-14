@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyesc.dao.ACarHomePageMapper">
+  		<!-- 初始化品牌 -->
+  		<select id="selectBrand" resultType="com.wyesc.pojo.Pp">
+  			    SELECT DISTINCT p.`ppid` ,p.`ppm`  FROM `pp`  p
+ 				INNER JOIN `cx` c ON p.`ppid`=c.`ppid`
+ 				WHERE p.`pppx`>0
+ 				ORDER BY p.`ppid` 
+ 				LIMIT 12
+  		</select>
+  		<!-- 初始化首字母 A-G -->
+  		<select id="selectAG" resultType="com.wyesc.pojo.Monogram">
+		    SELECT DISTINCT `ppszm` FROM `pp` WHERE `ppszm` BETWEEN 'A' AND 'G'
+  		</select>
+  		<!-- 初始化首字母 H-O -->
+  		<select id="selectHO" resultType="com.wyesc.pojo.Monogram">
+  			SELECT DISTINCT `ppszm` FROM `pp` WHERE `ppszm` BETWEEN 'H' AND 'O'
+  		</select>
+  		<!--初始化 首字母 Q-Z -->
+  		<select id="selectQZ" resultType="com.wyesc.pojo.Monogram">
+  			SELECT DISTINCT `ppszm` FROM `pp` WHERE `ppszm` BETWEEN 'Q' AND 'Z'
+  		</select>
+  		
+  		<!--初始化 根据首字母查询对应的品牌 -->
+  		<select id="selectPpmByPpszm" resultType="com.wyesc.pojo.Pp">
+  		      SELECT * FROM  `pp` WHERE `ppszm`=#{ppszm}
+  		</select>
+  		<!--初始化展示车系-->
+  		<select id="selectPpidByCarSeries" resultType="map">
+  			SELECT  p.`ppid`,c.cxid,c.`cxm` FROM `pp` p 
+			INNER JOIN  `cx` c ON  p.`ppid`=c.`ppid`
+			<choose>
+				<!--点击品牌展示车系  -->
+				<when test="ppid !=null and ppid!=''">
+					WHERE c.`ppid`=#{ppid} 
+				</when>
+				<!--初始化展示车系  -->
+				<otherwise>
+					WHERE p.`pppx`>0  
+					GROUP BY p.`ppid` 
+					LIMIT 10
+				</otherwise>
+			</choose>
+  		</select>
+  		<!--初始化价格  -->
+  		<select id="selectByXxzxm" resultType="com.wyesc.pojo.Xxzxb">
+  			SELECT * FROM `xxzxb` WHERE `xxid` =11  AND `xxzxm` LIKE CONCAT('%','万','%') 
+  		</select>
+  		<!--初始化更多主选项九个选项  -->
+  		<select id="selectOptions" resultType="com.wyesc.pojo.MoreOptions">
+  			SELECT * FROM `xx` WHERE `xxzt`>0   ORDER BY xxid  LIMIT 9
+  		</select>
+  		<!--初始化更多点击全部出现的主选项  -->
+  		<select id="selectAllOptions" resultType="com.wyesc.pojo.MoreOptions">
+  			SELECT * FROM `xx` WHERE `xxzt`>0   ORDER BY  xxid   LIMIT 9,999999999
+  		</select>
+  		<!-- 初始化根据主选项的id查询所对应的子选项 -->
+		<select id="selectXxidByXxzxm" resultType="com.wyesc.pojo.Xxzxb">
+			SELECT * FROM `xxzxb` WHERE `xxid`=#{xxid}
+		</select>
+		<!--根据xxzxb表的xxzxid，去点击xxzxb表的选项，展示信息  -->
+		<select id="selectByxxid" resultType="com.wyesc.pojo.Xxzxb">
+			SELECT * FROM xxzxb WHERE xxzxid=#{xxzxid}
+		</select>
+		<!--查询关键字：%年以上%  -->
+		<select id="selectbyNYS" resultType="com.wyesc.pojo.Xxzxb">
+		 SELECT  xxzxm  FROM xxzxb WHERE #{xxzxm} IN (SELECT xxzxm FROM xxzxb WHERE xxzxm LIKE CONCAT ('%','年以上','%'))
+		</select>
+		<!--初始化我要买车主页 全部-->
+		<select id="aCarHomePage" resultType="map">
+			SELECT * FROM `clxq` <include refid="Carpurchasefunctionquery"/>
+		</select>
+		<!--品牌，车系，价格，更多，全部，默认排序，最新发布，点击量，收藏量，价格，里程 等  查询  -->
+		<!-- <include refid="Carpurchasefunctionquery"/>-->
+		<sql id="Carpurchasefunctionquery">
+			<where>
+				 <if test="ppid !=null and ppid !=''">
+				  and  `pp` IN (SELECT `ppid` FROM `pp` WHERE `ppid`=#{ppid})
+				</if>
+				 <if test="cxid !=null and cxid !=''">
+				  and  `cx` IN (SELECT `cxid` FROM `cx` WHERE `cxid`=#{cxid})
+				</if>
+				 <if test="cljgfront !=null and cljgfront !=0.0 and cljgback != null and cljgback !=0.0">
+				  and  `cljg`  BETWEEN #{cljgfront} AND #{cljgback}
+				</if> 
+			     <if test="xxzxbzxm !=null and xxzxbzxm !=''">
+				 	<!-- 查从昨天起 到一年前的数据 sql -->
+				 	and spsj between DATE_SUB(NOW(), INTERVAL #{xxzxbzxm} DAY) and DATE_SUB(NOW(), INTERVAL 1 DAY)  ORDER BY spsj ,cl desc
+				 </if>
+			</where>
+		</sql> 
+</mapper>

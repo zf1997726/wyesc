@@ -1,0 +1,895 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>亿金二手车_价格_图片</title>
+<meta name="description" content="亿金汽车"/>
+<meta name="keywords" content="郑州二手车,河南二手车,郑州二手名车">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/layout.css">
+<link rel="stylesheet" type="text/css" href="css/pro.css">
+<link href="css/select.css" rel="stylesheet" />
+<link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style11.css" media="screen" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/jquery.select.js"></script>
+<script src="js/more.js"></script>
+<style type="text/css">
+*{margin:0; padding:0;list-style-type:none;}
+.select_box {border:1px solid  #ccc; position:relative;border-bottom: 0px}
+.select_box i{
+	width: 10px;
+    height: 6px;
+    position: absolute;
+    top: 9px;
+    right: 8px;
+}
+.d_c_c{
+	 background:url(images/107.jpg) no-repeat 0 0;
+}
+.u_c_c{
+	background:url(images/108.jpg) no-repeat 0 0;
+}
+.select_box span {
+  cursor:pointer; 
+  display:block; 
+  line-height:25px; 
+  width:72px; 
+  height:25px; 
+  overflow:hidden;/* 超出的文本隐藏 */
+  text-overflow:ellipsis; /* 溢出用省略号显示 */
+  white-space:nowrap; /* 溢出不换行 */
+  text-indent: 0.3em;
+  margin:0px;
+ }
+ 
+ .select_box span a{
+  cursor:pointer; 
+  display: contents; 
+  line-height:25px; 
+  width:72px; 
+  height:25px; 
+  overflow:hidden;/* 超出的文本隐藏 */
+  text-overflow:ellipsis; /* 溢出用省略号显示 */
+  white-space:nowrap; /* 溢出不换行 */
+  text-indent: 0.3em;
+  margin:0px;
+ }
+.select_box ul li {cursor:pointer;}
+.son_ul {width:100px; position:absolute; left:-1px; top:25px; border:1px solid #ccc; background:#fff;z-index: 1;border-top: 0px;}
+.son_ul li{padding-bottom: 0px;border-bottom: none; }
+
+.son_ul li a{
+    display:-webkit-box;
+    line-height:25px;
+    text-indent:-0.2em;
+    width:auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 13.5px;
+    border-bottom: none;
+    overflow:hidden;/* 超出的文本隐藏 */
+    text-overflow:ellipsis; /* 溢出用省略号显示 */
+    white-space:nowrap; /* 溢出不换行 */
+	margin:0px;
+}
+.hover {background:#ccc;}
+#main_box{width:92px; height:23px;}
+.hezi{    
+	width: 93px;
+    height: 24px;
+    margin-left: 5px;
+    display:inline-block;
+    vertical-align: middle;
+    margin: 11px 0px 0px 15px;
+}
+.show span{
+  background:url(images/107.jpg) no-repeat 33px center;
+  padding-right: 20px;
+  line-height: 49px;
+  
+}
+.show{
+ width:50px;
+ height: 45px;
+ 
+}
+.show2 span{
+  background:url(images/107.jpg) no-repeat 33px center;
+  padding-right: 20px;
+  line-height: 50px;
+  
+}
+.show2{
+ width:50px;
+ height: 45px;
+ 
+}
+.condition a{
+height:20px;
+margin: 13px 15px 0px 15px;
+}
+
+
+.allbrand{
+ width:1110px;
+ border-top: 1px solid #e6e6e6;
+ 
+}
+.allbrand2{
+ width:1110px;
+ 
+}
+.allbrand ul {
+	border:1px green solid;
+    width: 348px;
+    padding: 20px 0 0 20px;
+    float: left;
+   /*  height:500px; */
+    
+}
+.allbrand li{
+    
+	border-bottom:0px;
+    /* overflow: hidden; */
+   /*  margin-bottom: 20px; */
+}
+
+.allbrand label{
+   
+    float: left;
+    width: 20px;
+    height: 24px;
+    line-height: 24px; 
+    color: #22ac38;
+    font-size: 14px;
+    font-weight: 700;
+}
+.allbrand p{
+
+   float: left;
+   width: 322px;
+}
+.allbrand a{
+   
+	float: left;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 15px;
+    font-size: 14px;
+    color: #495056;
+    margin:0px 1px 10px 1px;
+   
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0; 
+    visibility: hidden;
+}
+</style>
+<script  type="text/javascript">
+/* $('.condition-li').on('mouseover',function(){
+	$(this).find('.d_c_c').addClass('u_c_c').removeClass('d_c_c');
+	$(this).find('.down-list').show();
+})
+.on('mouseout',function(){
+	$(this).find('.u_c_c').addClass('d_c_c').removeClass('u_c_c');
+	$(this).find('.down-list').hide();
+}) */
+	$(function () {
+		$('.son_ul').hide(); //初始ul隐藏
+	    $('.select_box').hover(function() { //鼠标移动函数
+	        $(this).parent().find('ul.son_ul').show(); //找到ul.son_ul显示
+	        $(this).find("i").removeClass("d_c_c").addClass("u_c_c");
+	        $(this).find('li').hover(function() {
+	            $(this).addClass('hover');
+	        },
+	        function() {
+	            $(this).removeClass('hover');
+				
+	        }); 
+			//li的hover效果
+	        $(this).parent().hover(function() {},
+	        function() {
+	            $(this).parent().find("ul.son_ul").hide();
+	        });
+	    },
+	    function() {
+	    	$(this).find("i").removeClass("u_c_c").addClass("d_c_c");
+		});
+	     $('.son_ul li').click(function() {
+	        $(this).parent().parent().find('span').html($(this).html());
+	        $(this).parent().parent().find('ul').hide();
+	    }); 
+	    //品牌的全部和收起
+	    testbrand();
+	    //更多的全部和收起
+	    testmore();
+	    //车系
+	   	testcarSeries();
+	    //价格
+	    //price();
+	});
+	function price(){
+		var price_L=$(".sTxt").val();
+		alert(price_L);
+		var price_R=$("#price_R").val();
+		alert(price_R);
+	}
+	function testcarSeries(){
+		//获取span的宽度
+		var carSeriesWidth=$(".a-box").width();
+		//获取车系li的宽度
+		var carSeriesLiWidth=$(".a-box").parent().width();
+	    /* alert("span的宽度:"+carSeriesWidth);
+	    alert("车系li的宽度:"+carSeriesLiWidth); */
+	    if(carSeriesWidth >=carSeriesLiWidth){
+	    	/* $(".a-box").parent().parent().css("border","1px red solid"); */
+	    	$(".a-box").parent().parent().css({"min-height":"40px"});
+	 		$(".a-box").parent().parent().find(".c-name").css({"height":"63px","line-height":"35px"});
+	 		/* $(".a-box").children("a").css("border","1px red solid"); */
+	 		$(".a-box").children("a").css({"margin-top":"5px"});
+	    }
+	}
+	
+	function testbrand(){
+		 $(".show span").click(function(){
+			 if($(this).text()=="全部"){
+				//显示
+				$(this).text('收起');
+				//箭头向下图片
+				$(this).css("background","url(images/108.jpg) no-repeat 33px center");
+				//左,品牌的li的高度
+				$(this).parent().parent().parent().parent().parent().css("height","520px");
+				//左,品牌
+				$(this).parent().parent().parent().parent().parent().find(".c-name").css("height","520px");
+				//内下边距
+				$(this).parent().parent().parent().parent().parent().css("padding-bottom",0);
+				//展示全部品牌的盒子
+				$(this).parent().parent().parent().next().show();
+			 }else{
+				//隐藏
+			    $(this).text('全部')
+				$(this).css("background","url(images/107.jpg) no-repeat 33px center").text='全部';
+			    $(this).parent().parent().parent().parent().parent().css("height","24px");
+			    $(this).parent().parent().parent().parent().parent().find(".c-name").css("height","47px"); 
+			    $(this).parent().parent().parent().parent().parent().css("padding-bottom","23px");
+				$(this).parent().parent().parent().next().hide();
+			 }
+		 });
+		
+	}
+	function testmore(){
+		 $(".show2 span").click(function(){
+			
+			 if($(this).text()=="全部"){
+				//显示
+				$(this).text('收起');
+				//箭头向下图片
+				$(this).css("background","url(images/108.jpg) no-repeat 33px center");
+				//左,更多的li的高度
+				$(this).parent().parent().parent().parent().parent().css("height","85px");
+				//左,更多
+				$(this).parent().parent().parent().parent().parent().find(".c-name").css("height","85px");
+				//内下边距
+				$(this).parent().parent().parent().parent().parent().css("padding-bottom",0);
+				//展示全部更多的盒子
+				$(this).parent().parent().parent().next().show();
+			 }else{
+				//隐藏
+			    $(this).text('全部')
+				$(this).css("background","url(images/107.jpg) no-repeat 33px center").text='全部';
+			    $(this).parent().parent().parent().parent().parent().css("height","24px");
+			    $(this).parent().parent().parent().parent().parent().find(".c-name").css("height","47px"); 
+			    $(this).parent().parent().parent().parent().parent().css("padding-bottom","23px");
+				$(this).parent().parent().parent().next().hide();
+			 }
+		 });
+		
+	}
+</script>
+</head>
+<body>
+<div id="header">
+  <div class="top">
+    <div class="wrap clearfix"> <a href="#" class="logo left"><img src="images/logo.png"/></a>
+      <div class="nav left dInline" id="headerMenu">
+      <a class="on" href="index.html">首页</a>
+      <a href="about.html">关于亿金</a>
+      <a href="maiche_list.html">我要买车</a>
+      <a href="wymc.html">我要卖车</a>
+      <a href="srdz.html">私人定制</a>
+      <!--<a href="shfw.html">售后服务</a>-->
+      <a id="MemberMenuChange" class="b-login" href="会员中心首页.html" target="_self">会员中心</a>
+      </div>
+      <span class="right" id="rightMenuHtml">
+				<a href="#" class="b-login" id="b-login">登录</a>|<a href="#" id="b-regist">注册</a>|&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/tel.png"/>			
+                </span> </div>
+  </div>
+  <div class="head-search">
+    <div class="wrap clearfix">
+      <div class="yjxj clearfix left" action="/index/keyword/" method="post" enctype="multipart/form-data">
+        <input type="text" name="keyword" placeholder="请输入您想要的品牌、车系或车辆编号搜索" class="left" />
+        <input type="submit" value="搜 索" class="right" />
+      </div>
+      <div class="hotWords left dInline"> 热门品牌：
+      <a href="#">奥迪A6L</a>
+      <a href="#">宝马5系</a>
+      <a href="#">奔驰E级</a>
+      <a href="#">奥迪A4L</a>
+      <a href="#">奔驰C级</a> 
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.s-form { margin-top:0px;}
+.toselect{background-color: rgb(64, 100, 156); color:#FFF}
+</style>
+<div id="about">
+  <div class="mTags">
+    <div class="wrap"> 
+    <a href="#">亿金名车广场</a>><a href="#">我要买车</a> 
+    </div>
+    <a href="srdz.html" class="dBtn right" style="padding-left: 40px;">在线私人订制</a>
+  </div>
+  <div class="wrap text-left">
+    <div class="carfliter-box">
+      <div class="condition">
+        <ul>
+          <li class=""> 
+           <span class="c-name left">品牌</span>
+            <div class="spec-moudle left dInline">
+            <a href="#">不限</a>  
+           	<a th:href="@{'maiche_list'(ppid=${e.ppid})}" th:each="e,esSat:${listpp}">[[${e.ppm}]]</a> 
+              <div class="pro_smore">
+                <div class="clearfix ps-a">
+                  <div class="show">
+                    <span>全部</span>
+                   </div>
+                </div>
+              </div>
+              <!--全部品牌-->
+              <div class="allbrand clearfix" style="display:none;">
+                   <ul>
+                   	  	 <li th:each="ag,agSat:${listAG}">
+                   	  	 	<label>[[${ag.ppszm}]]</label>
+                   	  	 	<p>
+                   	  	 		<a th:href="@{'maiche_list'(ppid=${ag2.ppid})}"  th:each="ag2,agSat:${ag.list}">[[${ag2.ppm}]]</a>
+                   	  	 	</p>
+                   	  	 </li>
+                   	  </ul>
+                   	  <ul>
+                   	  	 <li th:each="ho,hoSat:${listHO}">
+                   	  	 	<label>[[${ho.ppszm}]]</label>
+                   	  	 	<p>
+                   	  	 		<a th:href="@{'maiche_list'(ppid=${ho2.ppid})}" th:each="ho2,hoSat:${ho.list}">[[${ho2.ppm}]]</a>
+                   	  	 	</p>
+                   	  	 </li>
+                   	  </ul>
+                   	  <ul>
+                   	  	 <li th:each="qz,qzSat:${listQZ}">
+                   	  	 	<label>[[${qz.ppszm}]]</label>
+                   	  	 	<p>
+                   	  	 		<a th:href="@{'maiche_list'(ppid=${qz2.ppid})}" th:each="qz2,qzSat:${qz.list}">[[${qz2.ppm}]]</a>
+                   	  	 	</p>
+                   	  	 </li>
+                   	  </ul>
+              </div>
+            </div>
+          </li>
+           
+          <li class=""> 
+          <span class="c-name left">车系</span>
+             <div class="spec-moudle left dInline">
+             <span class="a-box">
+             <a href="#">不限</a> 
+             <a th:href="@{'maiche_list'(cxid=${e.cxid},ppid=${e.ppid})}" th:each="e,esCx:${listcx}">[[${e.cxm}]]</a> 
+             </span>
+              </div> 
+          </li>
+          <li class=""> <span class="c-name left">价格</span>
+            <div class="spec-moudle left dInline"> 
+            	<a href="#">不限</a> 
+            	<a href="#" th:each="e,esXxzxm:${listXxzxm}">[[${e.xxzxm}]]</a> 
+              <div class="pro_smore11">
+                <div class="clearfix ps-b">
+                  <table>
+                    <tr>
+                      <td>
+                        <input type="text" class="sTxt" id="price_L" th:value="${cljgfront}" maxlength="3"/>
+                       </td>
+                      <td>-</td>
+                      <td>
+                        <input type="text" class="sTxt" id="price_R" th:value="${cljgback}"  maxlength="3"/>
+                       </td>
+                      <td>万元</td>
+                      <td><input type="submit" value="确定" class="sBtn" id="tjprice" style="line-height:10px" /></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="" style="border-bottom:none;"> <span class="c-name left">更多</span>
+           <div class="spec-moudle left dInline">
+             <div class="hezi" th:each="e,esxx:${listmo}">
+  				<ul id="main_box">
+                  <li class="select_box" style="
+    padding-top:0px;
+    padding-bottom: 0px;
+                  ">
+                      <span>[[${e.xxm}]]</span>
+                      <i class="d_c_c"></i>
+                   <ul class="son_ul" style="width:100%;">
+                      <li><a>不限</a></li>
+				      <li th:each="e2,esxxzxb:${e.xxzxbs}"><a th:href="@{'vehicleage'(xxzxid=${e2.xxzxid},xxzxm=${e2.xxzxm})}"+>[[${e2.xxzxm}]]</a></li>
+                   </ul>
+                 </li>
+               </ul>
+             </div>
+             <!--更多的全部和收起  -->
+             <div class="pro_smore">
+                <div class="clearfix ps-a">
+                  <div class="show2">
+                    <span>全部</span>
+                   </div>
+                </div>
+              </div>
+              <!--更多的全部盒子  -->
+              <div class="allbrand2" style="display:none;">
+              		  <div class="hezi" th:each="e,esxx:${listmoAll}">
+  				<ul id="main_box">
+                  <li class="select_box" style="
+    padding-top:0px;
+    padding-bottom: 0px;
+                  ">
+                      <span>[[${e.xxm}]]</span>
+                      <i class="d_c_c"></i>
+                   <ul class="son_ul" style="width:100%">
+                   <!-- th:attr="data-cityxxzxm=${e2.xxzxm}" -->
+                   	  <li><a>不限</a></li>
+				      <li th:each="e2,esxxzxb:${e.xxzxbs}"><a>[[${e2.xxzxm}]]</a></li>
+                   </ul>
+                 </li>
+               </ul>
+             </div>
+              	</div>
+          	</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="carfl-tit clearfix">
+        <div class="result-box left dInline" style="height:auto;width:1190px">
+         <span class="left">当前筛选:</span>
+          <div class="s-form left clearfix" style="white-space:normal; width:auto">	<p class="left" style="width:auto;">		&nbsp;A 奥迪<span class="close right"></span>	</p></div>
+        </div>
+     </div>
+  </div>
+  	
+  <div class="aWrap clearfix wrap">
+    <div class="left dInline aLeft">
+      <div class="carSou">
+        <div class="cs-tit">
+          <div class="clearfix">
+            <div class="ctLeft left dInline">
+              <div class="ct-a left dInline">
+               <a class="on" href="#" ><i style="font-size:22px;">全部</i></a> 
+               </div>
+              <div class="cs_sub">
+                <a class="cs-a1" href="#">默认排序</a>
+                <a href="2/sta/A/ord/B/url_form.html">最新发布</a>
+                <a href="2/sta/A/ord/B/url_form.html">点击量<img src="images/down.gif"/></a> 
+                <a href="2/sta/A/ord/C/url_form.html">收藏量<img src="images/down.gif"/></a> 
+                <a href="2/sta/A/ord/E/url_form.html">价格<img src="images/up.gif"/></a> 
+                <a href="2/sta/A/ord/F/url_form.html">里程<img src="images/up.gif"/></a> 
+             </div>
+            </div>
+            <div class="right cpages"> 1/32 <a href="#">&lt;</a><a href="2/sta/A/ord/A/p/2.html">&gt;</a> </div>
+          </div>
+          <div class="cs-tit1"></div>
+        </div>
+        <div class="cs-list">
+           <div class="clearfix"> 
+           <ul class="gallery">
+			  <li th:each="e,esclxq:${listClxq}">
+			    <a th:title="${e.clm}" class="car-a">
+			    <img  src="images/qn.jpg" alt="BINGOO" />
+			    <h2 class="t">[[${e.clm}]]</h2>
+			    <div class="t-i">[[${#strings.substring('__${e?.spsj}__',0,4)+'年'}]]<span class="icon-pad">/</span>[[${e.xslc}]]万公里<span class="icon-pad">/</span>店内直卖</div>
+			     <div class="t-price">
+                    <!-- 价格 -->
+                    <!-- 如果是保卖车且有降价,则是'补贴金'的话术样式-->
+                    <p style="font-size:20px">[[${e.cljg}]]<span>万</span></p>
+                    <!-- 标签 -->
+                    <!-- 如果是保卖车且有降价,则是'补贴金'的话术样式-->
+                    <i class="i-orange">超值</i>
+                    <i class="i-red">急售</i>
+                    <i class="i-blue">严选车</i>
+                   <!--  <i class="i-green">准新车</i>  -->
+                    <em class="line-through">[[${e.scj}]]万</em> 
+                  </div>
+                  <div class="discount">
+                  	<div class="icon-sale">
+                  		<p class="discount_title">急降</p>
+    					<p class="discount_price">
+    						<span class="number" th:text="${(e.scj-e.cljg)<4?
+    						   #numbers.formatDecimal(e.scj-e.cljg,0,1)+'元':
+    						   #numbers.formatDecimal(e.scj-e.cljg,0,1)+'万'}">元</span>
+    					</p>             
+				  	</div>
+                  </div>
+    			</a>
+              </li>
+              <!--  <li>
+			    <a title="奔驰C级 2013 款 1.8T 自动 C260 CGI" class="car-a">
+			    <img  src="images/qn.jpg" alt="BINGOO" />
+			    <h2 class="t">奔驰C级 2013 款 1.8T 自动 C260 CGI</h2>
+			    <div class="t-i">2014年<span class="icon-pad">/</span>9.8万公里<span class="icon-pad">/</span>店内直卖</div>
+			     <div class="t-price">
+                    价格
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <p style="font-size:20px">9.70<span>万</span></p>
+                    标签
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <i class="i-orange">超值</i>
+                    <i class="i-red">急售</i>
+                    <i class="i-blue">严选车</i>
+                    <em class="line-through">22.70万</em> 
+                  </div>
+                  <div class="discount">
+                  	<div class="icon-sale">
+                  		<p class="discount_title">急降</p>
+    					<p class="discount_price">
+    						<span class="number">5600</span>
+    						<span>元</span>
+    					</p>             
+				  	</div>
+                  </div>
+    			</a>
+              </li> -->
+              <!-- <li>
+			    <a title="奔驰C级 2013 款 1.8T 自动 C260 CGI" class="car-a">
+			    <img  src="images/qn.jpg" alt="BINGOO" />
+			    <h2 class="t">奔驰C级 2013 款 1.8T 自动 C260 CGI</h2>
+			    <div class="t-i">2014年<span class="icon-pad">/</span>9.8万公里<span class="icon-pad">/</span>店内直卖</div>
+			     <div class="t-price">
+                    价格
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <p style="font-size:20px">9.70<span>万</span></p>
+                    标签
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <i class="i-orange">超值</i>
+                    <i class="i-red">急售</i>
+                    <i class="i-blue">严选车</i>
+                    <em class="line-through">22.70万</em> 
+                  </div>
+                  <div class="discount">
+                  	<div class="icon-sale">
+                  		<p class="discount_title">急降</p>
+    					<p class="discount_price">
+    						<span class="number">5600</span>
+    						<span>元</span>
+    					</p>             
+				  	</div>
+                  </div>
+    			</a>
+              </li> -->
+              <!-- <li>
+			    <a title="奔驰C级 2013 款 1.8T 自动 C260 CGI" class="car-a">
+			    <img  src="images/qn.jpg" alt="BINGOO" />
+			    <h2 class="t">奔驰C级 2013 款 1.8T 自动 C260 CGI</h2>
+			    <div class="t-i">2014年<span class="icon-pad">/</span>9.8万公里<span class="icon-pad">/</span>店内直卖</div>
+			     <div class="t-price">
+                    价格
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <p style="font-size:20px">9.70<span>万</span></p>
+                    标签
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <i class="i-orange">超值</i>
+                    <i class="i-red">急售</i>
+                    <i class="i-blue">严选车</i>
+                    <em class="line-through">22.70万</em> 
+                  </div>
+                  <div class="discount">
+                  	<div class="icon-sale">
+                  		<p class="discount_title">急降</p>
+    					<p class="discount_price">
+    						<span class="number">5600</span>
+    						<span>元</span>
+    					</p>             
+				  	</div>
+                  </div>
+    			</a>
+              </li> -->
+              <!-- <li>
+			    <a title="奔驰C级 2013 款 1.8T 自动 C260 CGI" class="car-a">
+			    <img  src="images/qn.jpg" alt="BINGOO" />
+			    <h2 class="t">奔驰C级 2013 款 1.8T 自动 C260 CGI</h2>
+			    <div class="t-i">2014年<span class="icon-pad">/</span>9.8万公里<span class="icon-pad">/</span>店内直卖</div>
+			     <div class="t-price">
+                    价格
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <p style="font-size:20px">9.70<span>万</span></p>
+                    标签
+                    如果是保卖车且有降价,则是'补贴金'的话术样式
+                    <i class="i-orange" style="display: none;">超值</i>
+                    <i class="i-red">急售</i>
+                    <i class="i-blue">严选车</i>
+                    <i class="i-green">准新车</i> 
+                    <em class="line-through">22.70万</em> 
+                  </div>
+                  <div class="discount">
+                  	<div class="icon-sale">
+                  		<p class="discount_title">急降</p>
+    					<p class="discount_price">
+    						<span class="number">5600</span>
+    						<span>元</span>
+    					</p>             
+				  	</div>
+                  </div>
+    			</a>
+              </li> -->
+            </ul>
+        </div>  
+          <div class="pages">
+           <!-- 首页 上一页  -->
+           <th:block th:if="${page.hasPreviousPage}">
+               <a class="on" th:href="@{'doPage'(pageIndex=1)}">首页</a>
+               <a  class="on" th:href="@{'doPage'(pageIndex=${page.prePage})}">&lt;&lt;</a>
+           </th:block>
+             <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+            <th:block th:each="nav : ${page.navigatepageNums}" >
+	  		  <a th:class="${nav==page.pageNum}?'disabled':'on'" th:href="@{'doPage'(pageIndex=${nav})}" th:text="${nav}"></a>
+	        </th:block>
+	         <!--下一页  尾页 -->
+	        <th:block th:if="${page.hasNextPage}">
+	          <a class="on" th:href="@{'doPage'(pageIndex=${page.nextPage})}">>></a> 
+              <a class="on"th:href="@{'doPage'(pageIndex=${page.lastPage})}" th:text="${page.lastPage}">32</a>
+             </th:block> 
+           </div>
+        </div>
+      </div>
+    </div>
+    <div class="right dInline aRight"> 
+      <div id="d_gd">
+      </div>
+      <style type="text/css">
+			.sameCar{margin-top:20px;padding-bottom:15px;border:1px solid #ccc;border-top:none;}
+			.sameCar h4{font-size:14px;color:#fff;padding:10px;background:#3F7DDD;}
+			.sameCar ul{}
+			.sameCar li{line-height:20px; margin:0px 10px;border-bottom:1px solid #ccc;padding:5px 0;}
+			.nav_fixed{position:fixed;top:0px;z-index: 10;}
+* html .nav_fixed{position:absolute;bottom:auto;top:expression(eval(document.documentElement.scrollTop));}
+			/* #header{position:absolute;} */
+			#d_gd,.gd_box{width:253px;overflow:hidden;}
+			
+			</style>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="foot-a1">
+    <div class="wrap">
+      <ul class="clearfix">
+        <li> <img src="images/db1.png"/>
+          <p>365项检测认证</p>
+        </li>
+        <li> <img src="images/db2.png"/>
+          <p>5000公里无需保养</p>
+        </li>
+        <li> <img src="images/db3.png"/>
+          <p>1年或两万公里无忧质保</p>
+        </li>
+        <li> <img src="images/db4.png"/>
+          <p>7天无忧退换</p>
+        </li>
+        <li> <img src="images/db5.png"/>
+          <p> 置换有增值</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-a">
+    <div class="wrap clearfix">
+      <div class="fDl left dInline "> <strong>亿金承诺</strong>
+        <ul>
+          <li><a href="#">365项严苛检测</a></li>
+          <li><a href="#">5000公里无需保养</a></li>
+          <li><a href="#">一年或两万公里质保</a></li>
+          <li><a href="#">7天退换</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>买卖二手车指南</strong>
+        <ul>
+          <li><a href="#" target="_blank">“禁止长时间停车”到底能</a></li>
+          <li><a href="#" target="_blank">20年前开桑塔纳的大款们，</a></li>
+          <li><a href="#" target="_blank">豪华入门跨界车之争,奔驰G</a></li>
+          <li><a href="#" target="_blank">像初恋一样爱它，该给它怎</a></li>
+          <li><a href="#" target="_blank">常开车不等于会开车 你的</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>售后服务</strong>
+        <ul>
+          <li><a href="#">24小时道路救援</a></li>
+          <li><a href="#">豪车凹陷修复</a></li>
+          <li><a href="#">定期上门维修保养服务</a></li>
+          <li><a href="#">预约保养工时优惠</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>关于亿金</strong>
+        <ul>
+          <li><a href="#" target="_blank">亿金动态</a></li>
+          <li><a href="#" target="_blank">亿金荣誉</a></li>
+          <li><a href="#" target="_blank">亿金优势</a></li>
+          <li><a href="#" target="_blank">联系亿金</a></li>
+          <li><a href="#" target="_blank">评估团队</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline "> <strong>亿金文化</strong>
+        <ul>
+          <li><a href="#">诚·立中原</a></li>
+          <li><a href="#">信·立天下</a></li>
+          <li><a href="#">改变、规范、引领一方市场</a></li>
+          <li><a href="#">颠覆中原人购车理念</a></li>
+        </ul>
+      </div>
+      <div class="fDl left dInline fDl1">
+        <div class="dLx"> <img src="images/dLx.jpg"/> </div>
+        <div style="height:50px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-b"> Copyright © 2015 qcauto All Rights Reserved 河南亿金有限公司 版权所有 豫ICP备123456789号<br/>
+    地址：郑州市管城区紫荆山东大街裕鸿花园 服务热线：400-888-6666<br/>
+     </div>
+</div>
+
+
+<div id="miniBus" style="right:-270px;">
+  <div class="mini-bar">
+    <div class="mini-barlist">
+      <ul>
+        <li class="miItem">
+          <div class="mini-mi browse"> <i class="mini-ease"></i> <code></code> <span>最近浏览</span> </div>
+        </li>
+        <li class="miItem">
+          <div class="mini-mi collec"> <i class="mini-ease"></i> <code></code> <span>我的收藏</span> </div>
+        </li>
+        <li>
+          <div class="mini-mi service"> <i class="mini-ease" id="BizQQWPA"></i> <code></code> <span>在线客服</span> </div>
+        </li>
+        <li class="callItem">
+          <div class="mini-mi callback"> <i class="mini-ease"></i> <code></code> <span>意见反馈</span> </div>
+        </li>
+        <li class="miItem">
+          <div class="mini-mi shopping"> <i class="mini-ease"></i> <code></code> <span>对比车辆</span> <abbr id="Dbnumber">0</abbr> </div>
+        </li>
+      </ul>
+    </div>
+    <a class="mini-gotop"></a> <a class="wx1"><img src="images/wx_1.png"></a>
+    <div class="wmImg hide"> <img src="images/wx_2.png"> </div>
+  </div>
+  <div class="mini-cont">
+    <div class="mini-contlist">
+      <div class="mini-ni">
+        <div class="mini-h clearfix"> <a class="mini-close mini-ease lf-fl"></a> <span class="lf-fr"><code>最近浏览</code></span> </div>
+        <div class="miList" id="Liulan">
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <div class="mini-ni">
+        <div class="mini-h clearfix"> <a class="mini-close mini-ease lf-fl"></a> <span class="lf-fr"><code>我的收藏</code></span> </div>
+        <div class="miList" id="shoucang">
+          <ul>
+          </ul>
+          <a  href="javascript:void(0)" class="mini-fav b-login">查看更多收藏</a> </div>
+      </div>
+      <div class="mini-ni" id="shopping">
+        <div class="mini-h clearfix"> <a class="mini-close mini-ease lf-fl"></a> <span class="lf-fr"><code>对比车辆</code></span> <span class="lf-fr" style="margin:auto 10px; font-size:26px; font-weight:bolder" id="deletealldb"><a><code>×</code></a></span> </div>
+        <div class="miList" id="Carduibi">
+          <ul>
+          </ul>
+          <a href="#" class="mini-fav">立即对比</a> </div>
+      </div>
+    </div>
+  </div>
+  <div class="lf-view" id="lf-view">
+    <form onsubmit="return Lmessage();" enctype="multipart/form-data" method="post" name="leaveMess" id="leaveMess">
+      <b>您对我们的看法~</b>
+      <div>
+        <textarea placeholder="您的声音对我们很重要哟(必填)~" name="bankAuthSrc"></textarea>
+      </div>
+      <div> <a id="viewSubmit" onclick="$('#leaveMess').submit()"></a>
+        <input type="text" placeholder="请留下您的手机号码(必填)" id="viewAbout" name="mobile" />
+      </div>
+    </form>
+    <a id="viewClose"></a> <i id="viewIcon"></i>
+    <p id="viewSign"></p>
+  </div>
+</div>
+
+
+
+<div id="popBox">
+  <div class="popCont"> <a class="p_closed">关闭</a>
+    <div class="p-tab"> <a>会员登录<i></i></a><a>会员注册<i></i></a> </div>
+    <div class="p-detail">
+      <div class="p-dl">
+        <form onsubmit="return check();" enctype="multipart/form-data" method="post" name="form" id="form">
+          <ul class="login-items">
+            <li>
+              <label>用户名(手机号)</label>
+              <input class="input" type="text" value="" maxlength="32"  name="username" placeholder="请输入您的手机号">
+            </li>
+            <li>
+              <label>密码</label>
+              <input class="input" type="password" value="" maxlength="16"  name="password">
+            </li>
+          </ul>
+          <div class="login-check">
+            <input type="checkbox" name="checkbox" style=" width:auto;" />
+            <label>记住我</label>
+            <a href="../../../Meet/editPass">忘记登录密码？</a> </div>
+          <div class="login-button">
+            <input type="hidden" value="" name="carid" class="ordercarid" />
+            <input type="hidden" value="" name="carstatus" class="orderstatus" />
+            <input type="button"  value="登&nbsp;&nbsp;&nbsp;&nbsp;陆" class="fM" onclick="$('#form').submit()" />
+          </div>
+          <!--<div class="security-pro">
+			            <i class="icons ver-green-down"></i>
+			            <b>您的信息已通过256位SGC加密保护，数据传输安全</b>
+			        </div>-->
+        </form>
+      </div>
+      <div class="p-dl">
+        <form class="registForm" onsubmit="return regcheck();" enctype="multipart/form-data" method="post" name="reg" id="reg">
+          <ul class="login-items">
+            <li class="clearfix">
+              <input class="input" name="mobile" id="mobile" type="text" value="" placeholder="手机号码（登录帐号）">
+            </li>
+            <li class="clearfix">
+              <input class="input left" type="text" value=""  name="verify" placeholder="输入验证码" style="width:100px;" />
+              <div id="send"><a href="#" class="send_code right">获取验证码</a></div>
+            </li>
+            <li class="clearfix">
+              <input class="input" type="text" value=""  name="realname" placeholder="姓名">
+            </li>
+            <li class="clearfix sex">
+              <input type="radio" checked="" name="gender" value="M" />
+              男&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="gender" value="F" />
+              女 </li>
+            <li class="clearfix">
+              <input id="" class="input" type="password" name="password" value="" placeholder="输入密码（六位字符）">
+            </li>
+          </ul>
+          <div class="login-button">
+            <input type="hidden" value="" name="carid" class="ordercarid" />
+            <input type="hidden" value="" name="carstatus" class="orderstatus" />
+            <input type="button"  value="立即注册" class="fM" onclick="$('#reg').submit()" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/miniBar.js"></script>
+<script type="text/javascript" src="js/lg_reg.js"></script>
+ 
+<!-- <script type="text/javascript" src="js/search_car.js"></script>  -->
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-datetimepicker.css"> 
+<script type="text/javascript" src="bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+</script> 
+</body>
+</html>

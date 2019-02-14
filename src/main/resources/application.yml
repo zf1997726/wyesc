@@ -1,0 +1,51 @@
+ #数据库连接驱动
+ spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///wyesc?serverTimezone=UTC
+    username: root
+    password: 123
+
+
+  jackson:
+       date-format: yyyy-MM-dd HH:mm
+       time-zone: GMT+8
+
+  #静态文件请求匹配方式
+  mvc:
+      static-path-pattern: /**
+
+  #修改默认的静态寻址资源目录
+  resources:
+      static-locations: classpath:/templates/,classpath:/META-INF/resources/,          classpath:/resources/,classpath:/static/,classpath:/public/
+
+  #指定mybatis配置文件位置
+  mybatis:
+      #config-location: classpath:mybatis-config.xml
+      type-aliases-package: com.cssl.pojo
+      configuration:
+        #所有的表自动增长
+        use-generated-keys: true
+        #完全映射
+        auto-mapping-behavior: FULL
+        #开启懒加载
+        lazy-loading-enabled: true
+        #按需加载
+        aggressive-lazy-loading: false
+        #全局缓存
+        cache-enabled: true
+  #分页
+  pagehelper:
+    helper-dialect: mysql
+    #开启合理化
+    reasonable: true
+    #pageSize=0相当于没有执行分页查询，但是返回结果仍然是Page类型
+    page-size-zero: true
+
+  #模板引擎
+  thymeleaf:
+        encoding: UTF-8
+        #开发时关闭缓存,不然没法看到实时页面
+        cache: false
+        #prefix: classpath:/templates/
+        #suffix: .html
